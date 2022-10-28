@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello World</title>
+    <!-- 要引两个 -->
+    <!--引入react的核心库-->
+    <script src="script/react.development.js"></script>
+    <!--引入react的DOM库-->
+    <script src="script/react-dom.development.js"></script>
+</head>
+<body>
+
+<div id="root"></div>
+
+<script>
+    /* React就是用来代替DOM的 */
+
+    // 通过React向页面中添加一个div
+    /*
+    *   React.createElement()
+    *       - 用来创建一个React元素
+    *       - 参数：
+    *           1. 元素名（组件名）
+    *           2. 元素中的属性
+    *           3. 元素的子元素（或内容）
+    * */
+    const div = React.createElement('div', {}, '我是React创建的div'); // 创建一个React元素
+
+    // 获取根元素对应的React元素 用的react-dom库里的内容
+    //  ReactDOM.createRoot() 用来创建React根元素，需要一个DOM元素作为参数
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+
+    // 将div渲染到根元素中
+    root.render(div);
+</script>
+</body>
+</html>

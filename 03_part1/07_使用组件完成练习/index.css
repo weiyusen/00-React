@@ -1,0 +1,11 @@
+/* 样式不要全写一个文件然后在index.js里一次性引入， 分开写 */
+/*设置基本样式*/
+*{
+    box-sizing: border-box;
+}
+
+/*设置body的样式*/
+body{
+    background-color: #DFDFDF;
+    margin: 0;
+}

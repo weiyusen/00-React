@@ -1,0 +1,36 @@
+.FilterMeals {
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    height: 120rem;
+    border-bottom: 1px solid #F2F2F2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.InputOuter {
+    position: relative;
+}
+
+.SearchInput {
+    width: 650rem;
+    height: 70rem;
+    border: none;
+    border-radius: 16px;
+    background-color: #F2F2F2;
+    padding-left: 60rem;
+    outline: none;
+    font-size: 32rem;
+}
+
+.SearchIcon {
+    font-size: 40rem;
+    position: absolute;
+    left: 10rem;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    color: #aaa;
+}

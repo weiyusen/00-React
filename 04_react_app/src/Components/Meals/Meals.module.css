@@ -1,0 +1,8 @@
+.Meals{
+    position: absolute;
+    top: 120rem;
+    bottom: 0;
+    /* 这样滚动条是Meals的，而不是body的 */
+    overflow: auto;
+    padding-bottom: 120rem;
+}
