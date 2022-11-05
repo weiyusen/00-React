@@ -36,13 +36,40 @@ const Cart = () => {
        参数为函数的setState
        参数为函数的useState, useMemo, or useReducer
      */
+    /**
+     * 默认情况下（只传一个回调时），useEffect()中的函数，会在组件渲染完成后调用
+     * 并且是每次渲染完成后都会调用
+     * 在useEffect()中可以传递一个第二个参数，
+     * 第二个参数是一个数组，在数组中可以指定useEffect的依赖项
+     * 指定后，只有当依赖发生变化时，Effect才会被触发
+     * 通常会将Effect中使用的所有的局部变量都设置为依赖项
+     * 这样一来可以确保这些值发生变化时，会触发Effect的执行
+     * 像setState()是由钩子函数useState()生成的
+     * useState()会确保组件的每次渲染都会获取到相同setState()对象
+     * 所以setState()方法可以不设置到依赖中
+     * 如果依赖项设置了一个空数组，则意味Effect只会在组件初始化时触发一次
+     */
+    const a = 10
     useEffect(() => {
+        console.log('effect执行了！');
+        console.log(a); //可能访问的不是最新的a，所以也要把它加进deps里
         if (ctx.totalAmount === 0) {
             // 购物车已经被清空
             setShowDetails(false)
+            setCheckout(false)
         }
-    });
+    }, [ctx, a, setShowDetails, setCheckout]);   //setState()方法可以不设置到依赖中
 
+    // useEffect(() => {
+    //     console.log('effect执行了！');
+    //     console.log(a); //可能访问的不是最新的a，所以也要把它加进deps里
+    //     if (ctx.totalAmount === 0) {
+    //         // 购物车已经被清空
+    //         setShowDetails(false)
+    //         setCheckout(false)
+    //     }
+    // }, []);   //如果依赖项设置了一个空数组，则意味Effect只会在组件初始化时触发一次
+ 
 
     // 添加一个显示详情页的函数
     // console.log(111); //会打印两次
