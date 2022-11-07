@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<!-- Redux是一个稳定、安全的状态管理器   只要是JS的应用都可以使用redux去管理状态
+    状态：就是一个变量，用以记录程序执行的情况
+    容器：是一个状态管理器，除了存储状态外，还可以用来对state进行查询、修改等所有操作 store
+    可预测：我们在对state进行各种操作时，其结果是一定的
+            useState是不可预测的，因为比如只想要number类型，但我们仍然可以往setState里设置其它类型，react不会报错
+            而redux是通过容器去控制 -->
+<!-- 为什么有了state和reducer、context还需要redux?
+        有些state需要在多个组件中用到，这时候我们如果用context会比较麻烦，而且state还是分开的，只是通过context传来传去，每一个state之间都是独立的
+        Redux的思想是做一个核心仓库，统一存储state
+
+        项目简单：用react自带的
+        项目复杂：用redux
+         -->
+
+<body>
+    <div>
+        <button id="sub">减少</button>
+        <span id="countSpan">1</span>
+        <span id="nameSpan"></span>
+        <button id="add">增加</button>
+        <button id="addFive">加5</button>
+    </div>
+    <!-- redux核心包 会提供一个核心类Redux-->
+    <script src="https://unpkg.com/redux@4.2.0/dist/redux.js"></script>
+    <script>
+        const subBtn = document.getElementById('sub')
+        const addBtn = document.getElementById('add')
+        const addFiveBtn = document.getElementById('addFive')
+        const countSpan = document.getElementById('countSpan')
+        const nameSpan = document.getElementById('nameSpan')
+
+        /*
+        *   网页中使用redux的步骤：
+        *       1.引入redux核心包
+        *       2.创建reducer整合函数
+        *       3.通过reducer对象创建store
+        *       4.对store中的state进行订阅
+        *       5.通过dispatch派发state的操作指令
+        * */
+        //    reducer整合了state的所有操作
+        // function reducer(state = 1, action) {
+        // 一遍存一个对象，这样可以放很多东西进去
+        function reducer(state = { count: 1, name:'zs' }, action) {
+            /*
+                state表示当前state, 可以根据这个state生成新的state
+                action是一个js对象，它里面会保存操作的信息
+            */
+        //    可预测性体现在这里：把所有的操作都提前准备好了，不能超出这个范围
+            switch (action.type) {
+                // 不改的属性要展开保存
+                case 'ADD': return { ...state, count: state.count + 1 }
+                case 'SUB': return { ...state, count: state.count - 1 }
+                case 'ADD_N': return { ...state, count: state.count + action.payload }
+                default: return state
+            }
+        }
+
+        // 当我们调用dispatch去调用修改state时会触发reducer回调函数
+        // 第二个参数是state的初始值，可以在这传，也可以在reducer里做形参初始值传  不传的话，undefined+1为NaN
+        // const store = Redux.createStore(reducer,1)
+        const store = Redux.createStore(reducer)
+
+        // 4.对store中的state进行订阅
+        store.subscribe(() => {
+            // 打印state的值
+            console.log(store.getState());
+            countSpan.innerText = store.getState().count
+        })
+        subBtn.addEventListener('click', () => {
+            // 5.通过dispatch派发state的操作指令
+            store.dispatch({
+                type: 'SUB'
+            })
+        })
+
+        addFiveBtn.addEventListener('click', () => {
+            store.dispatch({
+                type: 'ADD_N',
+                payload: 50
+            })
+        })
+
+        addBtn.addEventListener('click', () => {
+            store.dispatch({
+                type: 'ADD'
+            })
+        })
+
+        nameSpan.innerText = store.getState().name
+
+    </script>
+
+</body>
+
+</html>

@@ -1,4 +1,16 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+
+// class MyClass {
+//     fn = () => {
+//         // 在类中定义的箭头函数，this永远都指向实例对象
+//     }
+//     fn2(){
+//         const fn3 = () => {
+//             //这个是在方法中定义的，不是在类中定义的
+//         }
+//     }
+// }
+
 
 class User extends Component {
     /*
@@ -27,11 +39,11 @@ class User extends Component {
     // 向state中添加属性
     state = {
         count: 0,
-        test: '哈哈', 
-        obj: {name: '孙悟空', age: 18}
+        test: '哈哈',
+        obj: { name: '孙悟空', age: 18 }
     };
 
-    
+
 
     // 为了省事，在类组件中响应函数都应该以箭头函数的形式定义
     // 因为是作为类的方法，所以不需要加const
