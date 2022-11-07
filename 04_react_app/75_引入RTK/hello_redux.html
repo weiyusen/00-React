@@ -32,6 +32,9 @@
         *       - 可以通过对state分组来解决这个问题，创建多个reducer，然后将其合并为一个
         *   2.state每次操作时，都需要对state进行复制，然后再去修改
         *   3.case后边的常量(大写的那个)维护起来会比较麻烦
+        * 
+        * 因此提供了 Redux Toolkit 简称RTK，可以帮助我们处理Redux过程中的重复性工作，简化Redux中的各种操作
+        * npm install react-redux @reduxjs/toolkit -S
         * */
         switch (action.type) {
             case ADD:
@@ -50,8 +53,6 @@
     nameSpan.innerText = store.getState().name;
 
     store.subscribe(() => {
-        // 打印state的值
-        // console.log(store.getState());
         countSpan.innerText = store.getState().count;
         nameSpan.innerText = store.getState().name;
 
