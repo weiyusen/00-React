@@ -5,7 +5,7 @@ import StudentList from './components/StudentList'
 let num = 0
 
 const App = () => {
-    const result = useGetStudentsQuery(num) //传参的作用体现在data和currentData上
+    const result = useGetStudentsQuery(num) //传参的作用体现在data和currentData上  传的参数也会作为getStudents的query的参数
     /*
     currentData: undefined // 当前参数的最新数据 currentData存数据是会考虑参数的,当参数改变时,它只保存当前参数的最新数据
     data: undefined // 最新的数据  data存数据是不考虑传进来的参数的变化的

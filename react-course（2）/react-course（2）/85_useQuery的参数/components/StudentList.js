@@ -3,7 +3,6 @@ import React from 'react';
 import './StudentList.css';
 import Student from "./Student";
 import StudentForm from "./StudentForm";
-// import StudentForm from "./StudentForm";
 
 const StudentList = (props) => {
     return (

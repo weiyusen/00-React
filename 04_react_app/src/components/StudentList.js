@@ -1,6 +1,7 @@
 import React from 'react';
 import Student from "./Student";
 import './StudentList.css';
+import StudentForm from './StudentForm'
 
 
 const StudentList = (props) => {

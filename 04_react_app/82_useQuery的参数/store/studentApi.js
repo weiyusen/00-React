@@ -8,10 +8,10 @@ const studentApi = createApi({
     endpoints(build) {
         return {
             getStudents: build.query({
-                query() {
+                query(message) {
+                    console.log(message);
                     return 'students'
                 },
-                // 用来转换响应数据
                 transformResponse(baseQueryReturnValue) {
                     return baseQueryReturnValue.data
                 }
@@ -23,9 +23,7 @@ const studentApi = createApi({
                 transformResponse(baseQueryReturnValue) {
                     return baseQueryReturnValue.data
                 },
-                // 配置数据缓存的时间,单位是秒 从数据没被使用的时间开始计时   0表示不缓存  默认是60s
-                // keepUnusedDataFor:0 
-                keepUnusedDataFor:5   //5s
+                keepUnusedDataFor:5   
             })
         }
     }

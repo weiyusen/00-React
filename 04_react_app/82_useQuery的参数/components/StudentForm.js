@@ -3,25 +3,15 @@ import { useGetStudentByIdQuery } from '../store/studentApi';
 import './StudentForm.css';
 
 export default function StudentForm(props) {
-    /**
-     * 有可能的问题：点击修改时，input框里的数据是旧的   数据库里的值可能是被别人修改了
-     * 希望用户修改时，表单中的数据是数据库中最新的数据 
-     * 所以Student里通过props传的不应该是数据stu， 改为传一个id，这里通过id去发请求获取数据,再设置到state里
-     * 
-     * 即studentForm一加载，应该去自动的加载最新的学生数据
-     */
-    // 调用钩子来加载数据
-    /**RTKQ与我们之前用fetch手写发请求的区别：
-     * RTKQ有缓存，可以减少请求发送的次数。第一次的数据是发请求得到的，第二次的数据是直接从缓存中取
-     * 缓存是有时间限制，可以在api里配置keepUnusedDataFor来设置缓存时间
-     * */ 
-    const {data:stuData, isSuccess} = useGetStudentByIdQuery(props.stuId)
-    // console.log(stuData, isSuccess);
+    const {data:stuData, isSuccess} = useGetStudentByIdQuery(props.stuId, {
+        // StudentForm是多功能的,可以修改数据也可以添加数据 在添加的时候我们不需要发请求
+        skip: !props.stuId //没id的时候,说明是添加数据,就不发请求
+    })
     useEffect(() => {
         if(isSuccess){
         setInputData(stuData.attributes)
         }
-    }, [isSuccess]); //只有isSuccess发生变化的时候才会执行这个回调函数
+    }, [isSuccess]); 
 
     const [inputData, setInputData] = useState({
         name: '',

@@ -1,7 +1,7 @@
 import React from 'react';
 import Student from "./Student";
 import './StudentList.css';
-import StudentForm from './StudentForm'
+import StudentForm from './StudentForm';
 
 
 const StudentList = (props) => {
@@ -25,7 +25,8 @@ const StudentList = (props) => {
 
             </tbody>
             <tfoot>
-                {/* <StudentForm></StudentForm> */}
+                {/* StudentForm是多功能的,可以修改数据也可以添加数据 在添加的时候我们不需要发请求*/}
+                <StudentForm></StudentForm>
             </tfoot>
 
         </table>
