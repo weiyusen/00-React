@@ -19,7 +19,7 @@ const About = (props) => {
                     <li>沙和尚</li>
                     <li>唐僧</li>
                 </ul>
-                {/* 也可以直接写在这里 */}
+                {/* 也可以直接写在这里 v5的不能直接写hello*/}
                  <Route path={`${path}/hello`}>
                     <Hello></Hello>
                 </Route>
