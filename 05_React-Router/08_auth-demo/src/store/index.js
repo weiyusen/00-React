@@ -1,25 +1,14 @@
-import {configureStore} from "@reduxjs/toolkit";
-import {authApi} from "./api/authApi";
-import {setupListeners} from "@reduxjs/toolkit/query";
-import {authSlice} from "./reducer/authSlice";
-import studentApi from "./api/studentApi";
+import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
+import { setupListeners } from "@reduxjs/toolkit/dist/query";
+import { authApi } from "./api/authApi";
 
 const store = configureStore({
-
     reducer:{
-        [authApi.reducerPath]:authApi.reducer,
-        [studentApi.reducerPath]:studentApi.reducer,
-        auth:authSlice.reducer
+        [authApi.reducerPath]: authApi.reducer
     },
+    middleware:(getDefaultMiddleware().concat(authApi.middleware))
+})
 
-    middleware:(getDefaultMiddleware) =>
-        getDefaultMiddleware().concat(
-            authApi.middleware,
-            studentApi.middleware
-            )
+setupListeners(store.dispatch)
 
-});
-
-setupListeners(store.dispatch);
-
-export default store;
+export default store
