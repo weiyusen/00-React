@@ -8,6 +8,7 @@ root.render(
     <App />
 );
 
+// React17的方式，这种方式是用17的React
 // ReactDOM2.render(<App/>, document.getElementById("root"));
 
 

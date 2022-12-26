@@ -6,6 +6,7 @@ const Layout = (props) => {
         <div>
             <MainMenu></MainMenu>
             <hr />
+            {/* props.children 表示组件的标签体 */}
             {props.children}
         </div>
     );

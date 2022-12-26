@@ -1,31 +1,8 @@
 import React, {
     useDeferredValue,
-    useEffect,
-    useInsertionEffect,
-    useLayoutEffect,
-    useMemo,
-    useRef,
     useState
 } from 'react';
-import Some from "./components/Some";
-import useMyHook from "./hooks/useMyHook";
 import StudentList from "./components/StudentList";
-
-function sum(a, b){
-    const begin = Date.now();
-
-    while (1){
-        if(Date.now() - begin > 3000){
-            break;
-        }
-    }
-
-    console.log('函数执行了');
-    return a + b;
-}
-
-
-
 
 const App = () => {
 

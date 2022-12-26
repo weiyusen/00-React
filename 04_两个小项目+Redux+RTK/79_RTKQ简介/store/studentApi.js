@@ -1,8 +1,9 @@
+// 需要使用特定于 React 的入口点来导入 createAPI
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/dist/query/react";
 
 // 创建Api对象
 // createApi用来创建RTKQ中的API对象
-// RTKQ的所有功能都需要通过该对象来进行
+// RTKQ的所有 功能都需要通过该对象来进行
 // createApi() 需要一个对象作为参数
 const studentApi = createApi({
     // 作为Api的唯一标识,区分用的 和之前的name一个作用  如果不写的话,默认值是api
@@ -22,6 +23,7 @@ const studentApi = createApi({
                 query() {
                     // 用来指定请求子路径
                     // 这样 调用getStudents时,会像 baseUrl+这里返回值 拼一起的路径发请求
+                    // 如果不传参，直接返回一个路径就行，如果要传参就是返回一个对象
                     return 'students'
                 }
             }),
@@ -48,3 +50,5 @@ const studentApi = createApi({
  * RTKQ已经集成在了RTK中,不需要再引其它包
  * RTKQ中将一组相关功能统一封装到一个Api对象中   createApi() 自动生成钩子
  */
+
+// 需要导出，看下面一节

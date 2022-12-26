@@ -10,8 +10,8 @@ const StudentList = (props) => {
     // 过滤数组
     const stus = STU_DATA.filter(item => item.indexOf(props.filterWord) !== -1);
 
+    // 人为调慢StudentList的速度
     const begin = Date.now();
-
     while (1){
         if(Date.now() - begin > 3000){
             break;
@@ -26,5 +26,5 @@ const StudentList = (props) => {
         </ul>
     );
 };
-
+// 还需要用memo包起来
 export default React.memo(StudentList);
